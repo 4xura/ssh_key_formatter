@@ -16,7 +16,7 @@ def format_openssh_key(raw_key):
 
 def main():
     # Input raw key
-    raw_key = input("Enter your raw OpenSSH key (one-line or improperly formatted): ")
+    raw_key = input("Enter your raw OpenSSH key (whatever it looks like): ")
     
     # Format the key
     formatted_key = format_openssh_key(raw_key)
