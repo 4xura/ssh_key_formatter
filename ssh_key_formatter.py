@@ -3,20 +3,20 @@ def format_openssh_key(raw_key):
     header = "-----BEGIN OPENSSH PRIVATE KEY-----"
     footer = "-----END OPENSSH PRIVATE KEY-----"
     
-    # Remove raw header and footer if they exist
-    key_content = raw_key.replace(header, "").replace(footer, "").strip()
+    # Clean input: Remove any newlines, spaces, and header/footer
+    key_content = raw_key.replace(header, "").replace(footer, "").replace("\n", "").replace(" ", "").strip()
     
-    # Split the key content into 64-character lines
+    # Split into 64-character lines
     formatted_key_content = "\n".join([key_content[i:i+64] for i in range(0, len(key_content), 64)])
     
-    # Reassemble the key with the header and footer
-    formatted_key = f"{header}\n{formatted_key_content}\n{footer}"
+    # Reassemble the key with the header and footer, and add necessary line breaks
+    formatted_key = f"{header}\n{formatted_key_content}\n{footer}\n"
     
     return formatted_key
 
 def main():
     # Input raw key
-    raw_key = input("Enter your one-line OpenSSH key: ")
+    raw_key = input("Enter your raw OpenSSH key (one-line or improperly formatted): ")
     
     # Format the key
     formatted_key = format_openssh_key(raw_key)
