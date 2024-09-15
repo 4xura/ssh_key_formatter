@@ -25,7 +25,7 @@ def main():
     print("\nFormatted OpenSSH Key:\n")
     print(formatted_key)
     
-    # Optionally save the key to a file for future use
+    # Optionally save the key to a file
     save_to_file = input("Do you want to save the formatted key to a file? (y/n): ").lower()
     if save_to_file == 'y':
         filename = input("Enter the filename (e.g., id_rsa): ")
