@@ -1,3 +1,5 @@
+# Just run `python3 ssh_key_formatter.py` to enter prompt and then input SSH key
+
 def format_openssh_key(raw_key):
     # Define the header and footer for the OpenSSH key format
     header = "-----BEGIN OPENSSH PRIVATE KEY-----"
