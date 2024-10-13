@@ -3,7 +3,12 @@ def format_openssh_key(raw_key):
     header = "-----BEGIN OPENSSH PRIVATE KEY-----"
     footer = "-----END OPENSSH PRIVATE KEY-----"
     
-    # Clean input: Remove any newlines, spaces, and header/footer
+    # Clean input: Remove unwanted symbols, newlines, spaces, and header/footer
+    unwanted_symbols = ["\"", "\'", ",", ";", ":", "|", "\\", "/", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "{", "}", "<", ">", "?", "="]
+    for symbol in unwanted_symbols:
+        raw_key = raw_key.replace(symbol, "")
+    
+    # Further clean to remove newlines, spaces, and headers/footers
     key_content = raw_key.replace(header, "").replace(footer, "").replace("\n", "").replace(" ", "").strip()
     
     # Split into 64-character lines
@@ -19,8 +24,13 @@ def format_rsa_key(raw_key):
     header = "-----BEGIN RSA PRIVATE KEY-----"
     footer = "-----END RSA PRIVATE KEY-----"
     
-    # Clean input: Remove any newlines, spaces, and header/footer
-    key_content = raw_key.replace(header, "").replace(footer, "").replace("\\n", "").replace("\n", "").replace(" ", "").strip()
+    # Clean input: Remove unwanted symbols, newlines, spaces, and header/footer
+    unwanted_symbols = ["\"", "\'", ",", ";", ":", "|", "\\", "/", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "{", "}", "<", ">", "?", "="]
+    for symbol in unwanted_symbols:
+        raw_key = raw_key.replace(symbol, "")
+    
+    # Further clean to remove newlines, spaces, and headers/footers
+    key_content = raw_key.replace(header, "").replace(footer, "").replace("\n", "").replace(" ", "").strip()
     
     # Split into 64-character lines
     formatted_key_content = "\n".join([key_content[i:i+64] for i in range(0, len(key_content), 64)])
